@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomMenu" />
+
+
+    <LinearLayout
+        android:id="@+id/bottomMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPopular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Popular"
+            android:textAllCaps="false"
+            android:backgroundTint="@null"
+            android:background="#DDDDDD"
+            android:textColor="@android:color/black"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPlaylist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Playlist"
+            android:textAllCaps="false"
+            android:backgroundTint="@null"
+            android:background="#DDDDDD"
+            android:textColor="@android:color/black"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Settings"
+            android:textAllCaps="false"
+            android:backgroundTint="@null"
+            android:background="#DDDDDD"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+
+</RelativeLayout>

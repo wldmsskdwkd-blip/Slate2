@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="16dp"
+    tools:context=".DashboardFragment">
+
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Popular Ranking"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="#DDDDDD"
+        android:padding="16dp">
+
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="2"
+            android:rowCount="3"
+            android:orientation="horizontal"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true"
+            android:rowOrderPreserved="false"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <!-- 1~6위 버튼 -->
+            <Button
+                android:id="@+id/movie1Button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="1. 영화 제목 1"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:id="@+id/movie2Button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="2. 영화 제목 2"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:id="@+id/movie3Button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="3. 영화 제목 3"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:id="@+id/movie4Button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="4. 영화 제목 4"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:id="@+id/movie5Button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="5. 영화 제목 5"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:id="@+id/movie6Button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="6. 영화 제목 6"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/black" />
+        </GridLayout>
+    </LinearLayout>
+</LinearLayout>
