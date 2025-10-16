@@ -13,7 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import org.json.JSONArray
 
-class AddToPlaylistDialog(context: Context) : Dialog(context) {
+class AddToPlaylistDialog(context: Context, private val movieTitle: String) : Dialog(context) {
 
     private lateinit var playlistContainer: LinearLayout
     private lateinit var btnCancel: Button
@@ -23,7 +23,8 @@ class AddToPlaylistDialog(context: Context) : Dialog(context) {
     private val PREF_NAME = "playlist_prefs"
     private val KEY_PLAYLISTS = "playlist_names"
     private val KEY_COUNTS = "playlist_counts"
-    private val KEY_CHECKED = "playlist_checked"
+    //영화마다 독립 저장: 제목을 키에 포함
+    private val KEY_CHECKED_PREFIX = "playlist_checked_"
 
     private var checkBoxList = mutableListOf<CheckBox>()
 
@@ -57,7 +58,7 @@ class AddToPlaylistDialog(context: Context) : Dialog(context) {
         fillCheckBoxes(playlists, checkedStates)
     }
 
-    // 🔸 SharedPreferences 불러오기
+    // SharedPreferences 리스트 로드
     private fun loadListFromPrefs(key: String): List<String> {
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val json = prefs.getString(key, null) ?: return emptyList()
@@ -67,9 +68,11 @@ class AddToPlaylistDialog(context: Context) : Dialog(context) {
         return list
     }
 
+    // 영화별 체크 상태 로드
     private fun loadCheckedStates(size: Int): MutableList<Boolean> {
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val json = prefs.getString(KEY_CHECKED, null)
+        val keyChecked = KEY_CHECKED_PREFIX + movieTitle
+        val json = prefs.getString(keyChecked, null)
         val result = MutableList(size) { false }
 
         if (json != null) {
@@ -81,7 +84,7 @@ class AddToPlaylistDialog(context: Context) : Dialog(context) {
         return result
     }
 
-    // 🔸 체크박스 UI 생성
+    // 체크박스 UI 생성
     private fun fillCheckBoxes(playlists: List<String>, checkedStates: List<Boolean>) {
         playlistContainer.removeAllViews()
         checkBoxList.clear()
@@ -104,7 +107,7 @@ class AddToPlaylistDialog(context: Context) : Dialog(context) {
         }
     }
 
-    // 🔸 저장 버튼 클릭 시 카운트 증가/감소 & 체크 상태 저장
+    // 저장 시 체크 상태별 카운트 업데이트 및 저장
     private fun saveSelectedPlaylists() {
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
@@ -120,27 +123,26 @@ class AddToPlaylistDialog(context: Context) : Dialog(context) {
             val wasChecked = previousChecked.getOrNull(i) ?: false
             val isChecked = cb.isChecked
 
-            // 🔹 상태 저장용
+            // 상태 저장용
             currentChecked[i] = isChecked
 
-            // 🔹 체크 상태 변화에 따른 카운트 증감
+            // 체크 변화에 따른 카운트 증감
             if (isChecked && !wasChecked) {
-                // 새로 체크됨 → 영화 개수 +1
                 counts[i] = counts[i] + 1
             } else if (!isChecked && wasChecked) {
-                // 체크 해제됨 → 영화 개수 -1 (단, 0보다 작아지지 않게)
                 counts[i] = (counts[i] - 1).coerceAtLeast(0)
             }
         }
 
-        // 저장
+        // 저장 (영화별로 독립 KEY 사용)
+        val keyChecked = KEY_CHECKED_PREFIX + movieTitle
         prefs.edit()
             .putString(KEY_PLAYLISTS, JSONArray(names).toString())
             .putString(KEY_COUNTS, JSONArray(counts).toString())
-            .putString(KEY_CHECKED, JSONArray(currentChecked).toString())
+            .putString(keyChecked, JSONArray(currentChecked).toString())
             .apply()
 
-        // SharedData 동기화 (화면 실시간 반영용)
+        // SharedData 갱신 (UI 반영용)
         SharedData.playlistNames = names
         SharedData.playlistCounts = counts.toMutableList()
     }

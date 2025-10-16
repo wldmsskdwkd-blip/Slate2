@@ -13,12 +13,15 @@ class MovieInformationActivity : AppCompatActivity() {
         binding = ActivityMovieInformationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 🔙 뒤로가기 버튼
+        // 뒤로가기 버튼
         binding.backArrow.setOnClickListener { finish() }
 
-        // ➕ ic_add 버튼 클릭 시 팝업 띄우기
+        // DashboardFragment에서 전달된 영화 제목 받기
+        val title = intent.getStringExtra("title") ?: "unknown"
+
+        // ic_add 버튼 클릭 시 팝업 띄우기 (영화 제목 전달)
         binding.btnAdd.setOnClickListener {
-            val dialog = AddToPlaylistDialog(this)
+            val dialog = AddToPlaylistDialog(this, title)
             dialog.show()
         }
     }
