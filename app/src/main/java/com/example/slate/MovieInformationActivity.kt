@@ -1,26 +1,25 @@
 package com.example.slate
 
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.slate.databinding.ActivityMovieInformationBinding
 
 class MovieInformationActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMovieInformationBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_information)
+        binding = ActivityMovieInformationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val title = intent.getStringExtra("title") ?: "제목 없음"
-        val rank = intent.getIntExtra("rank", 0)
+        // 🔙 뒤로가기 버튼
+        binding.backArrow.setOnClickListener { finish() }
 
-        val textMovieInfo = findViewById<TextView>(R.id.textMovieInfo)
-        val backArrow = findViewById<ImageView>(R.id.backArrow)
-
-        textMovieInfo.text = "영화 제목: $title\n순위: ${rank}위"
-
-        backArrow.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+        // ➕ ic_add 버튼 클릭 시 팝업 띄우기
+        binding.btnAdd.setOnClickListener {
+            val dialog = AddToPlaylistDialog(this)
+            dialog.show()
         }
     }
 }

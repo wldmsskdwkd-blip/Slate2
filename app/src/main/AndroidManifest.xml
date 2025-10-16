@@ -20,11 +20,12 @@
             </intent-filter>
         </activity>
 
-        <!-- 메인 -->
+        <!-- 메인 화면 (탭: Dashboard / Playlist / Settings) -->
         <activity android:name=".MainActivity" />
 
-        <!-- ✅ 영화 정보 화면 -->
-        <activity android:name=".MovieInformationActivity" />
+        <!-- 재생목록 상세 화면 (제목 + 뒤로가기 버튼만 표시) -->
+        <activity android:name=".PlaylistDetailActivity" />
 
     </application>
+
 </manifest>

@@ -13,13 +13,14 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-
+        <!-- 상단 제목 영역 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
+            <!-- 뒤로가기 버튼 -->
             <ImageView
                 android:id="@+id/backArrow"
                 android:layout_width="24dp"
@@ -30,16 +31,30 @@
                 android:clickable="true"
                 android:focusable="true" />
 
+            <!-- 제목 -->
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Movie Information"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black" />
+
+            <!-- 오른쪽 + 버튼 -->
+            <ImageView
+                android:id="@+id/btnAdd"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_add"
+                android:contentDescription="추가"
+                android:layout_marginStart="8dp"
+                android:clickable="true"
+                android:focusable="true" />
         </LinearLayout>
 
-
+        <!-- 영화 포스터 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +86,7 @@
             </LinearLayout>
         </LinearLayout>
 
-
+        <!-- 리뷰 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +110,7 @@
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-
+        <!-- 영화 정보 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

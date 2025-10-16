@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#D3D3D3"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_marginBottom="8dp"
+    android:gravity="center_vertical">
+
+    <!-- 상단: 제목 + 수정/삭제 아이콘 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- 재생목록 제목 -->
+        <TextView
+            android:id="@+id/playlistTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="My Moviest blocks"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+
+        <!-- 수정 버튼 -->
+        <ImageView
+            android:id="@+id/icEdit"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_edit"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"
+            android:contentDescription="수정" />
+
+        <!-- 삭제 버튼 -->
+        <ImageView
+            android:id="@+id/icDelete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_delete"
+            android:visibility="gone"
+            android:contentDescription="삭제" />
+    </LinearLayout>
+
+    <!-- 하단: 영화 개수 -->
+    <TextView
+        android:id="@+id/playlistCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="영화리스트 0개"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp" />
+
+</LinearLayout>
